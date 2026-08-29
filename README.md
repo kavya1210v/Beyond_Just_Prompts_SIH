@@ -1,4 +1,4 @@
-# Cyclone Detection and Classification AI Dashboard 🌀
+# 🌀 Cyclone Detection and Classification AI Dashboard
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)
@@ -6,134 +6,394 @@
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.110.0-green.svg)
 ![YOLO](https://img.shields.io/badge/YOLO-11-yellow.svg)
 
-An advanced, AI-driven disaster management and decision-support dashboard. Built for the Smart India Hackathon (SIH), this project integrates real-time geospatial tracking, object detection via YOLO11 on multi-spectral satellite imagery, XGBoost-based intensity classification, and a Gemini-powered Retrieval-Augmented Generation (RAG) knowledge base to provide actionable intelligence for disaster response authorities.
+An advanced **AI-powered disaster management and decision-support dashboard** built for the **Smart India Hackathon (SIH)**. The platform integrates **YOLO11 object detection**, **XGBoost-based cyclone intensity classification**, **interactive geospatial visualization**, and a **Gemini-powered Retrieval-Augmented Generation (RAG)** system to provide actionable intelligence for disaster response authorities.
 
 ---
 
-## 🌟 Key Features
+# 🌟 Key Features
 
-### 1. Vision AI Satellite Studio (YOLO11)
-- **Multi-Spectral Ingestion:** Upload and analyze INSAT-3D satellite frames (TIR-1, WV, GeoColor) for real-time inference.
-- **Deep Convective Core Detection:** Dynamically detects the cyclone's eye and dense convective core using our custom-trained YOLO11s model (`cyclone_yolo11s_best.pt`).
-- **Interactive UI:** Features adjustable confidence thresholds, live 640x640 pixel-coordinate inspectors, and toggleable bounding box overlays.
+## 🛰️ 1. Vision AI Satellite Studio (YOLO11)
 
-### 2. Meteorological Classification Engine (XGBoost)
-- **Real-Time Telemetry Processing:** Predicts the official Cyclone Category (from *Depression* up to *Super Cyclonic Storm*) based on real-time atmospheric telemetry.
-- **Features Analyzed:** Central Pressure (hPa), Sustained Winds (km/h), Sea Surface Temperature (SST), and Vertical Wind Shear.
+- **Multi-Spectral Satellite Image Support**
+  - Upload and analyze INSAT-3D satellite imagery (TIR-1, WV, GeoColor).
 
-### 3. Geospatial Command Center
-- **Interactive Radar Mapping:** Powered by `react-leaflet`, visualizing the cyclone's track.
-- **Threat Radius Simulation:** Displays the estimated Radius of Maximum Winds (RMW) and high-vulnerability port warnings in real-time.
+- **Deep Convective Core Detection**
+  - Detect cyclone eyes and dense convective cores using a custom-trained **YOLO11s** model.
 
-### 4. AI Decision Support (RAG + Gemini)
-- **Tactical Advisories:** Generates strict, authority-grade disaster advisories utilizing a local ChromaDB vector database.
-- **NDMP Grounded:** The database is indexed entirely from the official NDMP-2019 guidelines, preventing LLM hallucinations during critical, high-stress operations.
+- **Interactive Dashboard**
+  - Adjustable confidence threshold
+  - Bounding box overlays
+  - Live coordinate inspector
+  - Real-time inference
 
 ---
 
-## 🏗️ System Architecture
+## 🌪️ 2. Meteorological Classification Engine (XGBoost)
 
-The project is structured into three highly modular tiers for clean separation of concerns:
+Predict cyclone intensity from atmospheric telemetry.
 
-1. **TIER 1 (Computer Vision):** YOLO11 Object Detection for extracting spatial intelligence from raw satellite imagery.
-2. **TIER 2 (Classification & Telemetry):** XGBoost Classification bridging numerical telemetry with IBTrACS ground truth.
-3. **TIER 3 (Generative Advisory):** RAG Pipeline querying ChromaDB and utilizing Google Gemini for grounded situational awareness.
+### Features Used
+
+- Central Pressure (hPa)
+- Sustained Wind Speed (km/h)
+- Sea Surface Temperature (SST)
+- Vertical Wind Shear
+
+### Predicted Categories
+
+- Depression
+- Deep Depression
+- Cyclonic Storm
+- Severe Cyclonic Storm
+- Very Severe Cyclonic Storm
+- Extremely Severe Cyclonic Storm
+- Super Cyclonic Storm
 
 ---
 
-## 📁 Repository Structure
+## 🗺️ 3. Geospatial Command Center
 
-```text
-cyclone-detection-and-classification/
-├── backend/                  # FastAPI Application Server
-│   ├── app/                  # Routes, Pydantic Schemas, and AI Services
-│   ├── weights/              # Trained ML weights (.pt, .json)
-│   └── requirements.txt      # Python dependencies
-├── frontend/                 # React Application (Vite + TypeScript)
-│   ├── src/                  # Components, Custom Hooks, API Clients
-│   ├── public/               # Static assets
-│   └── package.json          # Node dependencies
-├── RAG/                      # Retrieval-Augmented Generation Engine
-│   ├── knowledge_base/       # NDMP Guidelines & Raw PDF Documents
-│   ├── vectordb/             # ChromaDB Persistent Storage
-│   └── scripts/              # Ingestion & chunking scripts
-├── models/                   # Classification training scripts and artifacts
-├── notebooks/                # Jupyter Notebooks for Data Prep & YOLO Training
-├── docs/                     # Project Documentation & Architecture Reports
-└── README.md                 # You are here!
+Powered by **React Leaflet**.
+
+### Features
+
+- Interactive cyclone tracking
+- Radius of Maximum Winds (RMW)
+- Coastal vulnerability visualization
+- Port warning system
+- Real-time mapping
+
+---
+
+## 🤖 4. AI Decision Support (RAG + Gemini)
+
+Generate disaster management advisories grounded in official NDMP guidelines.
+
+### Features
+
+- NDMP-2019 grounded responses
+- ChromaDB vector database
+- Google Gemini integration
+- Hallucination-resistant retrieval
+- Executive-level disaster briefings
+
+---
+
+# 🏗️ System Architecture
+
+The project follows a modular three-tier AI architecture.
+
+```
+Satellite Images
+        │
+        ▼
+┌──────────────────────────┐
+│  Tier 1 - YOLO11         │
+│  Object Detection        │
+└────────────┬─────────────┘
+             │
+             ▼
+┌──────────────────────────┐
+│ Tier 2 - XGBoost         │
+│ Cyclone Classification   │
+└────────────┬─────────────┘
+             │
+             ▼
+┌──────────────────────────┐
+│ Tier 3 - RAG + Gemini    │
+│ Disaster Advisories      │
+└──────────────────────────┘
 ```
 
 ---
 
-## 🚀 Getting Started
+# 📁 Repository Structure
 
-Follow these steps to run the complete dashboard environment locally.
-
-### Prerequisites
-- Python 3.10 or higher
-- Node.js 18 or higher
-- API Keys: **Google Gemini API** (Required for the RAG LLM engine)
-
-### 1. Backend Setup (FastAPI + AI Services)
-
-1. Open a terminal and navigate to the backend directory:
-   ```bash
-   cd backend
-   ```
-2. Create and activate a Python virtual environment:
-   ```bash
-   python3 -m venv .venv
-   source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
-   ```
-3. Install required dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. Set up your environment variables (Add your Gemini API Key in `backend/app/services/llm_inference.py` or a `.env` file).
-5. Start the FastAPI development server:
-   ```bash
-   uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
-   ```
-   *The backend will be available at `http://localhost:8000`. You can test endpoints via the interactive Swagger docs at `http://localhost:8000/docs`.*
-
-### 2. Frontend Setup (React + Vite)
-
-1. Open a **new** terminal and navigate to the frontend directory:
-   ```bash
-   cd frontend
-   ```
-2. Install Node dependencies:
-   ```bash
-   npm install
-   ```
-3. Start the Vite development server:
-   ```bash
-   npm run dev
-   ```
-   *The command center dashboard will be accessible at `http://localhost:5173`.*
+```text
+cyclone-detection-and-classification/
+├── backend/
+│   ├── app/
+│   ├── weights/
+│   └── requirements.txt
+│
+├── frontend/
+│   ├── src/
+│   ├── public/
+│   └── package.json
+│
+├── RAG/
+│   ├── knowledge_base/
+│   ├── vectordb/
+│   └── scripts/
+│
+├── models/
+├── notebooks/
+├── docs/
+└── README.md
+```
 
 ---
 
-## 🔗 Core API Endpoints
+# 📦 Pre-trained Model Weights
 
-The backend exposes a highly robust, asynchronously-driven REST API:
+The custom-trained **YOLO11s Cyclone Detection** model used in this project is publicly available on Kaggle.
 
-- **`POST /api/v1/detect`**: Submit a multi-spectral satellite frame. Returns a structured JSON payload containing bounding boxes, confidence scores, and normalized pixel coordinates from YOLO11.
-- **`POST /api/v1/cyclones/classify`**: Submit atmospheric telemetry (e.g., wind speed, pressure). Returns the predicted IMD Cyclone Category.
-- **`GET /api/v1/advisory/{scenario_id}`**: Retrieves context-aware, NDMP-grounded disaster advisories generated via the RAG pipeline.
+## 🔗 Kaggle Model
+
+**Cyclone Detection v2 (YOLO11s)**
+
+https://www.kaggle.com/models/punitkashyap2007/cyclone-detection-v2
+
+Download the latest `.pt` model weights and place them inside:
+
+```text
+backend/
+└── weights/
+    └── cyclone_yolo11s_best.pt
+```
+
+> **Note:** The Kaggle repository contains the latest trained versions of the YOLO11s cyclone detection model used by this project.
 
 ---
 
-## 💡 Usage Scenarios
+# 🚀 Getting Started
 
-1. **Upload an Image:** In the *Vision AI Satellite Studio*, click the upload button to ingest a raw `.png` satellite frame. The `cyclone_yolo11s_best.pt` model will instantly run inference and overlay the cyclone core.
-2. **Adjust Thresholds:** Use the slider in the *Inference Engine Controls* to filter out low-confidence cloud formations dynamically.
-3. **Analyze Telemetry:** Input real-time metrics (like 120 km/h sustained winds) into the *Classification Engine* to determine if the storm has escalated to a Severe Cyclonic Storm.
-4. **Generate Advisories:** Click *Generate Executive Briefing* to cross-reference the active scenario with the NDMP-2019 database.
+## Prerequisites
+
+- Python 3.10+
+- Node.js 18+
+- Google Gemini API Key
 
 ---
 
-## 📜 License
+## Backend Setup (FastAPI)
+
+```bash
+cd backend
+```
+
+Create a virtual environment.
+
+```bash
+python -m venv .venv
+```
+
+Activate it.
+
+### Linux/macOS
+
+```bash
+source .venv/bin/activate
+```
+
+### Windows
+
+```powershell
+.venv\Scripts\activate
+```
+
+Install dependencies.
+
+```bash
+pip install -r requirements.txt
+```
+
+Create a `.env` file (or configure the API key in your backend).
+
+```env
+GEMINI_API_KEY=YOUR_API_KEY
+```
+
+Run the server.
+
+```bash
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+```
+
+Backend URL
+
+```
+http://localhost:8000
+```
+
+Swagger Documentation
+
+```
+http://localhost:8000/docs
+```
+
+---
+
+## Frontend Setup (React + Vite)
+
+```bash
+cd frontend
+```
+
+Install packages.
+
+```bash
+npm install
+```
+
+Run the development server.
+
+```bash
+npm run dev
+```
+
+Frontend URL
+
+```
+http://localhost:5173
+```
+
+---
+
+# 🔗 API Endpoints
+
+## Detect Cyclone
+
+```http
+POST /api/v1/detect
+```
+
+Returns:
+
+- Bounding boxes
+- Confidence score
+- Pixel coordinates
+
+---
+
+## Classify Cyclone
+
+```http
+POST /api/v1/cyclones/classify
+```
+
+Returns:
+
+- IMD cyclone category
+- Prediction confidence
+
+---
+
+## Generate Advisory
+
+```http
+GET /api/v1/advisory/{scenario_id}
+```
+
+Returns:
+
+- NDMP-grounded disaster advisory
+- Executive briefing
+- Emergency recommendations
+
+---
+
+# 💡 Usage
+
+### 1. Upload Satellite Image
+
+Upload a `.png` INSAT-3D image into the Vision AI dashboard.
+
+---
+
+### 2. Detect Cyclone
+
+The custom-trained YOLO11s model automatically detects:
+
+- Cyclone eye
+- Dense convective core
+
+---
+
+### 3. Adjust Confidence Threshold
+
+Use the confidence slider to remove weak detections.
+
+---
+
+### 4. Classify Cyclone
+
+Enter atmospheric telemetry including:
+
+- Wind speed
+- Pressure
+- SST
+- Wind shear
+
+The XGBoost model predicts the cyclone category.
+
+---
+
+### 5. Generate Executive Briefing
+
+Click **Generate Executive Briefing** to retrieve an NDMP-grounded advisory using the RAG pipeline.
+
+---
+
+# 🛠️ Tech Stack
+
+| Category | Technologies |
+|----------|--------------|
+| Frontend | React 18, Vite, TypeScript |
+| Backend | FastAPI, Python |
+| Object Detection | YOLO11 (Ultralytics) |
+| Classification | XGBoost |
+| Mapping | React Leaflet |
+| Vector Database | ChromaDB |
+| LLM | Google Gemini |
+| Data Processing | NumPy, Pandas |
+| ML | Scikit-learn |
+| Deployment | Docker (Optional) |
+
+---
+
+# 📈 Future Improvements
+
+- Live INSAT satellite stream integration
+- IMD API integration
+- Multi-cyclone tracking
+- Temporal cyclone forecasting
+- Rainfall estimation
+- Flood prediction module
+- Mobile dashboard
+- Automated emergency alert system
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome.
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Commit your changes.
+4. Push your branch.
+5. Open a Pull Request.
+
+---
+
+# 📜 License
 
 Developed exclusively for the **Smart India Hackathon (SIH)**.
-Released under the MIT License.
+
+Released under the **MIT License**.
+
+---
+
+# 👨‍💻 Team
+
+This project was developed by the following team members for the **Smart India Hackathon (SIH)**:
+
+- **Punit**
+- **Sahana**
+- **Mandeep**
+- **Rajiv**
+- **Kavya**
+- **Jatan**
+
+---
