@@ -1,0 +1,82 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Node
+node_modules
+dist
+dist-ssr
+*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+ENV/
+env.bak/
+venv.bak/
+.venv
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environments
+.env
+.env.test
+.env.production
+.env.local
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Build/Cache
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.tox/
+
+# Project Specific (Weights, Data)
+backend/weights/*.zip
+backend/app/data/sample_satellite_frames/*.tmp
+
+# RAG Data (Ignored to save space)
+RAG/chunks/
+RAG/cleaned_docs/
+RAG/knowledge_base/
+RAG/parsed_docs/
+RAG/vectordb/
